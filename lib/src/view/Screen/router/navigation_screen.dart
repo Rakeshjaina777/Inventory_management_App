@@ -1,11 +1,11 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:inventory_mangement/src/view/Screen/Inventory.dart';
+import 'package:inventory_mangement/src/view/Screen/Major_screen/Inventory.dart';
 
-import '../low_stock.dart';
+import '../Major_screen/low_stock.dart';
 
-import '../manage.dart';
+import '../Major_screen/manage.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 1;
 
   static const List<String> _titles = [
     "Manage",

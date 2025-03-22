@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_mangement/summaryclass.dart';
-import 'user_sheet_api.dart';
+import 'package:inventory_mangement/src/view/Screen/widgit/summaryclass.dart';
+import '../../../../Services/user_sheet_api.dart';
 
 class StockManagementScreen extends StatefulWidget {
   @override
