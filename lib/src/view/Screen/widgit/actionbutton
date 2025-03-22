@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import '../../../controllers/low_stock_controller.dart';
+
+class ActionButtons extends StatelessWidget {
+  final LowStockController controller;
+
+  const ActionButtons({required this.controller, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+          onPressed: controller.sendNotification,
+          child: const Text('Send Notification'),
+        ),
+        ElevatedButton(
+          onPressed: controller.scheduleReminder,
+          child: const Text('Schedule Reminder'),
+        ),
+      ],
+    );
+  }
+}

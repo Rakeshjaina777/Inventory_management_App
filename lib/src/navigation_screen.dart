@@ -1,9 +1,10 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:inventory_mangement/src/view/Screen/Inventory.dart';
 
 import '../low_stock.dart';
-import '../main.dart';
+
 import '../manage.dart';
 
 class MainScreen extends StatefulWidget {

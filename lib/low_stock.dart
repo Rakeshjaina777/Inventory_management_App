@@ -27,15 +27,17 @@ class _LowStockScreenState extends State<LowStockScreen> {
   }
 
   Widget _buildSummaryCard(String title, String value, Color color) {
-    return Container(
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(10)),
-      child: Column(
-        children: [
-          Text(title, style: GoogleFonts.poppins(color: Colors.white)),
-          SizedBox(height: 5),
-          Text(value, style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
-        ],
+    return Flexible(
+      child: Container(
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(10)),
+        child: Column(
+          children: [
+            Text(title, style: GoogleFonts.poppins(color: Colors.white)),
+            SizedBox(height: 5),
+            Text(value, style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+          ],
+        ),
       ),
     );
   }
@@ -52,6 +54,7 @@ class _LowStockScreenState extends State<LowStockScreen> {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: DataTable(
+              columnSpacing: 20,
               columns: [
                 DataColumn(label: Text('Bicycle Name')),
                 DataColumn(label: Text('Quantity')),
@@ -60,7 +63,7 @@ class _LowStockScreenState extends State<LowStockScreen> {
               ],
               rows: items.map((item) {
                 return DataRow(cells: [
-                  DataCell(Text(item.bicycleName)),
+                  DataCell(Text(item.bicycleName, overflow: TextOverflow.ellipsis)),
                   DataCell(Text(item.quantity.toString())),
                   DataCell(Text(item.threshold.toString())),
                   DataCell(Text(item.stockStatus)),
@@ -72,7 +75,6 @@ class _LowStockScreenState extends State<LowStockScreen> {
       ),
     );
   }
-
 
   void _sendNotification() async {
     final Uri emailUri = Uri.parse("mailto:rakeshjaina07@gmail.com?subject=Low%20Stock%20Alert&body=Check%20the%20inventory");
@@ -87,9 +89,7 @@ class _LowStockScreenState extends State<LowStockScreen> {
     }
   }
 
-
   void _scheduleReminder() {
-    // Implement scheduling logic here
     print("Reminder scheduled");
   }
 
@@ -97,40 +97,46 @@ class _LowStockScreenState extends State<LowStockScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Low Stock & Inactive Items')),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildSummaryCard('Low Stock Bicycles', '${_lowStockItems.length}', Colors.orange),
-              _buildSummaryCard('Inactive Bicycles', '${_inactiveItems.length}', Colors.red),
-            ],
-          ),
-          Expanded(
-            child: ListView(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildSummaryCard('Low Stock Bicycles', '${_lowStockItems.length}', Colors.orange),
+                  _buildSummaryCard('Inactive Bicycles', '${_inactiveItems.length}', Colors.red),
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            _lowStockItems.isEmpty && _inactiveItems.isEmpty
+                ? Center(child: Text("No low stock or inactive items", style: GoogleFonts.poppins(fontSize: 16)))
+                : Column(
               children: [
                 _buildTable(_lowStockItems, 'Low Stock Items'),
                 _buildTable(_inactiveItems, 'Inactive Items'),
               ],
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: _sendNotification,
-                  child: Text('Send Notification'),
-                ),
-                ElevatedButton(
-                  onPressed: _scheduleReminder,
-                  child: Text('Schedule Reminder'),
-                ),
-              ],
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: _sendNotification,
+                    child: Text('Send Notification'),
+                  ),
+                  ElevatedButton(
+                    onPressed: _scheduleReminder,
+                    child: Text('Schedule Reminder'),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
