@@ -21,7 +21,7 @@ class _LowStockScreenState extends State<LowStockScreen> {
   Future<void> _fetchInventory() async {
     final inventory = await UserSheetApi.fetchInventory();
     setState(() {
-      _lowStockItems = inventory.where((item) => item.quantity <= item.threshold).toList();
+      _lowStockItems = inventory.where((item) => item.quantity < item.threshold).toList();
       _inactiveItems = inventory.where((item) => item.stockStatus == "Inactive").toList();
     });
   }

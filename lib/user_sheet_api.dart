@@ -12,7 +12,7 @@ class UserSheetApi {
   static Future<void> init() async {
     try {
       final String credentials = await rootBundle.loadString('assets/credentials.json');
-      final Map<String, dynamic> jsonCredentials = jsonDecode(credentials);
+      // final Map<String, dynamic> jsonCredentials = jsonDecode(credentials);
 
       _gsheets = GSheets(credentials);
       final ss = await _gsheets.spreadsheet(_spreadsheetId);
