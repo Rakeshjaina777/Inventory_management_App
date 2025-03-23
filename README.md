@@ -142,13 +142,12 @@ Below are the key packages used to implement this project:
 
 | Package Name              | Usage                                  |
 |--------------------------|----------------------------------------|
-| `flutter_bloc`            | State management using BLoC pattern   |
-| `googleapis`              | Interact with Google Sheets API       |
+| `gsheet`              | Interact with Google Sheets API       |
 | `http`                    | Handle API requests                   |
-| `flutter_secure_storage`  | Secure token storage                  |
-| `shared_preferences`      | Save user preferences locally         |
-| `dio`                     | Efficient HTTP requests               |
 | `provider`                | Manage app-wide state                 |
+| `fl_chart`                | Visualize data using graphs           |
+| `flutter_local_notifications` | Send local notifications           |
+| `google_fonts`            | Use Google Fonts for custom typography |
 
 ---
 
