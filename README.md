@@ -57,6 +57,10 @@ The **Inventory Management System** is a cross-platform application built with *
 
 
 
+## Dataset
+https://docs.google.com/spreadsheets/d/1KG84-ReuwiUatfgkwRhOfR-fhKjHLtHE04Jj9xqkPqQ/edit?gid=0#gid=0
+
+---
 
 
 
